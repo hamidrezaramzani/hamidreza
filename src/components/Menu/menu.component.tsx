@@ -1,12 +1,12 @@
 import MenuItem from "./MenuItem/menu-item.component";
-import { wordBook } from "@/contants/wordBook";
+import { wordBook } from "@/constants/wordBook";
 import { IconBaseProps } from "react-icons";
 import { BiHome } from "react-icons/bi";
 import {
   AiOutlineProject,
   AiOutlineHeart,
   AiOutlinePhone,
-  AiOutlineLinkedin
+  AiOutlineLinkedin,
 } from "react-icons/ai";
 import { TbBrandBlogger, TbBrandTelegram } from "react-icons/tb";
 import { IoLogoInstagram } from "react-icons/io";
@@ -43,7 +43,6 @@ export default function Menu() {
             <Link href="https://t.me/hamidrezaramzani">
               <TbBrandTelegram className="font-qs-light text-xl text-indigo-500" />
             </Link>
-
 
             <Link href="https://linkedin.com/in/hamidrezaramzani">
               <AiOutlineLinkedin className="font-qs-light text-xl text-indigo-500" />
