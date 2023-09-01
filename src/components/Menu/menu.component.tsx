@@ -13,7 +13,10 @@ import { IoLogoInstagram } from "react-icons/io";
 import Link from "next/link";
 
 export default function Menu() {
-  const iconStyles: IconBaseProps = { fontSize: 18 };
+  const iconStyles: IconBaseProps = {
+    fontSize: 18,
+    className: "text-indigo-600",
+  };
   return (
     <div className="hidden md:w-3/12 h-full bg-neutral-950 md:flex justify-center items-center">
       <ul className="flex flex-col gap-10">
