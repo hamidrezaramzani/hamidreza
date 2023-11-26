@@ -1,0 +1,21 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: run for test
+        run: echo "Hello World"
+        shell: bash
+  goodby:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run for test 2
+        run: echo "Good by now"
+        shell: bash
