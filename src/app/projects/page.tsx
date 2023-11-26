@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 export default function ProjectsPage() {
   return (
-    <MainLayout title={wordBook.view.projects.title.en}>
+    <MainLayout title={wordBook.view.home.bio.en}>
       <div className="w-1/3">
         <img src="/" alt="This is test" />
         <h3>Project Title</h3>
