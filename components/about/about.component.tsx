@@ -7,7 +7,7 @@ export const About = () => {
   return (
     <div className="section w-full flex justify-center align-middle h-screen">
       <div className="flex justify-center w-full gap-5">
-        <div className="flex w-1/2 gap-5">
+        <div className="flex w-1/2 gap-5 align-middle">
           <Image src="/alien.jpeg" width={400} alt="Alien" height={400} />
           <div>
             <TypeAnimation
