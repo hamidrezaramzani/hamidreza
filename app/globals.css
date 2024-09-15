@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styles/fonts.css */
+@font-face {
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/raleway/Raleway-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Raleway-bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/raleway/Raleway-Bold.ttf") format("truetype");
+}
+
+.raleway-bold {
+  font-family: "Raleway-bold" !important;
+}
+
+.raleway-regular {
+  font-family: "Raleway" !important;
+}

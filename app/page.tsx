@@ -1,4 +1,5 @@
 "use client";
+import { About } from "@/components";
 import ReactFullpage from "@fullpage/react-fullpage";
 export default function Home() {
   return (
@@ -8,9 +9,7 @@ export default function Home() {
       render={() => {
         return (
           <ReactFullpage.Wrapper>
-            <div className="section">
-              <p>Section 1 (welcome to fullpage.js)</p>
-            </div>
+            <About />
             <div className="section">
               <p>Section 2</p>
             </div>
