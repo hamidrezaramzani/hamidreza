@@ -20,11 +20,12 @@ export const Experience = () => {
             <ul className="list-disc ml-3 mt-3">
               <li className="text-sm raleway-regular text-slate-600 mt-3">
                 I have built dynamic user interfaces using React.js to improve
-                the user experience in the company's web applications.
+                the user experience in the company&apos;s web applications.
               </li>
               <li className="text-sm raleway-regular text-slate-600 mt-3">
-                I've implemented responsive designs with JavaScript, ensuring
-                that our applications work seamlessly across all devices.
+                I&apos;ve implemented responsive designs with JavaScript,
+                ensuring that our applications work seamlessly across all
+                devices.
               </li>
               <li className="text-sm raleway-regular text-slate-600 mt-3">
                 I regularly collaborate with backend developers to integrate
@@ -32,8 +33,8 @@ export const Experience = () => {
                 smooth.
               </li>
               <li className="text-sm raleway-regular text-slate-600 mt-3">
-                I've optimized application performance, focusing on reducing
-                load times and improving overall responsiveness.
+                I&apos;ve optimized application performance, focusing on
+                reducing load times and improving overall responsiveness.
               </li>
               <li className="text-sm raleway-regular text-slate-600 mt-3">
                 I contribute to maintaining and improving the codebase by
