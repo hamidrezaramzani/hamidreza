@@ -1,5 +1,5 @@
 "use client";
-import { About, Experience } from "@/components";
+import { About, Experience, Project } from "@/components";
 import ReactFullpage from "@fullpage/react-fullpage";
 export default function Home() {
   return (
@@ -15,6 +15,7 @@ export default function Home() {
             <ReactFullpage.Wrapper>
               <About />
               <Experience />
+              <Project />
             </ReactFullpage.Wrapper>
           </>
         );

@@ -24,7 +24,7 @@ export const Slider = <T,>({ values, render }: SliderProps<T>) => {
 
   return (
     <>
-      <div className="absolute top-0 right-0 z-50 w-6 h-16 flex justify-center items-center flex-col gap-2">
+      <div className="absolute md:top-0 md:right-0 bottom-0 w-full right-0 z-50 md:w-6 h-16 flex justify-center items-center md:flex-col gap-2">
         <button
           onClick={handleSlidePrev}
           className="text-xl  hover:bg-slate-50 rounded-md transition-all"

@@ -11,7 +11,7 @@ export const Experience = () => {
       <Slider<WorkExperience>
         values={experiences}
         render={(selectedExperience) => (
-          <div className="w-full">
+          <div className="w-full  transition-all duration-300 ease-in-out">
             <span className="text-sm raleway-regular text-slate-600">
               {selectedExperience?.startDate} - {selectedExperience?.endDate}
             </span>

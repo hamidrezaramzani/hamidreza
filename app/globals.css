@@ -24,3 +24,7 @@
 .raleway-regular {
   font-family: "Raleway" !important;
 }
+
+.fp-watermark {
+  display: none !important;
+}

@@ -14,16 +14,4 @@ export const experiences: WorkExperience[] = [
       "Contributed to maintaining and improving the codebase by following best practices in JavaScript and React development.",
     ],
   },
-
-  {
-    startDate: "22 july 2024",
-    endDate: "22 april 2024",
-    position: "Frontend Developer",
-    company: "Auditorioum",
-    workHighlights: [
-      "Refactor api endpoints.",
-      "Refactor forms.",
-      "Create i18 files.",
-    ],
-  },
 ];

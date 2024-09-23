@@ -10,4 +10,7 @@ export const wordbook: {
   experience: {
     title: "#EXPERIENCE",
   },
+  project: {
+    title: "#PROJECT",
+  },
 };
