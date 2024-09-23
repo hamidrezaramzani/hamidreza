@@ -1,8 +1,11 @@
 import { MainLayoutProps } from "./main-layout.type";
 
-export const MainLayout = ({ title, children }: MainLayoutProps) => {
+export const MainLayout = ({ title, children, hash }: MainLayoutProps) => {
   return (
-    <div className="section w-full flex justify-center align-middle h-screen">
+    <div
+      className="section w-full flex justify-center align-middle h-screen"
+      id={hash}
+    >
       <div className="flex justify-center w-full gap-5">
         <div className="flex flex-col w-5/6 md:w-1/2 gap-5 justify-center align-middle">
           {title && (

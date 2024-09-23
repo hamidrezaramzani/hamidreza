@@ -7,7 +7,7 @@ import { wordbook } from "@/utils";
 
 export const Project = () => {
   return (
-    <MainLayout title={wordbook.project.title}>
+    <MainLayout hash="projects" title={wordbook.project.title}>
       <Slider<ProjectItem>
         values={projects}
         render={(selectedProject) => (

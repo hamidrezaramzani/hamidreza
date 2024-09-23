@@ -7,7 +7,7 @@ import { wordbook } from "@/utils";
 
 export const Experience = () => {
   return (
-    <MainLayout title={wordbook.experience.title}>
+    <MainLayout hash="experiences" title={wordbook.experience.title}>
       <Slider<WorkExperience>
         values={experiences}
         render={(selectedExperience) => (
