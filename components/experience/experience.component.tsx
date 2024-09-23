@@ -23,7 +23,10 @@ export const Experience = () => {
             </h4>
             <ul className="list-disc ml-3 mt-3">
               {selectedExperience?.workHighlights.map((highlight) => (
-                <li className="text-sm raleway-regular text-slate-600 mt-3">
+                <li
+                  className="text-sm raleway-regular text-slate-600 mt-3"
+                  key={highlight}
+                >
                   {highlight}
                 </li>
               ))}

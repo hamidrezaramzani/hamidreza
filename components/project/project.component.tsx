@@ -27,7 +27,10 @@ export const Project = () => {
             </h4>
             <div className="flex gap-3 mt-3">
               {selectedProject?.technologies.map((technology) => (
-                <span className="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10">
+                <span
+                  key={technology}
+                  className="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10"
+                >
                   {technology}
                 </span>
               ))}
