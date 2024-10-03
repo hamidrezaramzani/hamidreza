@@ -3,7 +3,7 @@ import { MainLayoutProps } from "./main-layout.type";
 export const MainLayout = ({ title, children, hash }: MainLayoutProps) => {
   return (
     <div
-      className="section w-full flex justify-center align-middle h-screen"
+      className="section w-full flex justify-center align-middle h-screen flex-wrap"
       id={hash}
     >
       <div className="flex justify-center w-full gap-5">

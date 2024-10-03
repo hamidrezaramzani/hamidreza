@@ -13,4 +13,7 @@ export const wordbook: {
   project: {
     title: "#PROJECT",
   },
+  contact: {
+    title: "#CONTACT",
+  },
 };
