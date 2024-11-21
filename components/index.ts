@@ -4,3 +4,4 @@ export * from "./experience";
 export * from "./navbar";
 export * from "./project";
 export * from "./main-layout";
+export * from "./loading-container";

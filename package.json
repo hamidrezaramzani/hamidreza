@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.44",
+    "@supabase/supabase-js": "^2.46.1",
     "next": "14.2.11",
     "react": "^18",
     "react-dom": "^18",

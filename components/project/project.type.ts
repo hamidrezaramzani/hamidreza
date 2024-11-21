@@ -4,5 +4,5 @@ export type ProjectItem = {
   endDate: string;
   title: string;
   description: string;
-  technologies: string[];
+  technologies: { id: string; title: string }[];
 };

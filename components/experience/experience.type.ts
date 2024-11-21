@@ -3,5 +3,5 @@ export type WorkExperience = {
   endDate: string;
   position: string;
   company: string;
-  workHighlights: string[];
+  workHighlights: { id: string; description: string }[];
 };
