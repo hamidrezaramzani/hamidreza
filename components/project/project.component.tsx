@@ -54,20 +54,20 @@ export const Project = () => {
                 target="_blank"
                 className="duration-300 ease-in-out w-full"
               >
-                <span className="text-sm raleway-regular text-slate-600">
+                <span className="text-sm  dark:text-white raleway-regular text-slate-600">
                   {selectedProject?.startDate} - {selectedProject?.endDate}
                 </span>
-                <h3 className="raleway-bold text-2xl  py-1 text-slate-800">
+                <h3 className="raleway-bold text-2xl dark:text-violet-500 py-1 text-slate-800">
                   {selectedProject?.title}
                 </h3>
-                <h4 className="raleway-regular text-slate-600">
+                <h4 className="raleway-regular dark:text-gray-300 text-slate-600">
                   - {selectedProject?.description}
                 </h4>
                 <div className="flex gap-3 mt-3">
                   {selectedProject?.technologies.map(({ id, title }) => (
                     <span
                       key={id}
-                      className="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10"
+                      className="inline-flex items-center rounded-md bg-white px-2 py-1 text-xs font-medium dark:bg-zinc-800 dark:text-violet-50 text-violet-500 ring-1 ring-inset dark:ring-0 ring-violet-700/10"
                     >
                       {title}
                     </span>

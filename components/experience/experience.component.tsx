@@ -50,21 +50,21 @@ export const Experience = () => {
             values={experiences}
             render={(selectedExperience) => (
               <div className="w-full  transition-all duration-300 ease-in-out">
-                <span className="text-sm raleway-regular text-slate-600">
+                <span className="text-sm raleway-regular dark:text-white text-slate-600">
                   {selectedExperience?.startDate} -{" "}
                   {selectedExperience?.endDate}
                 </span>
-                <h3 className="raleway-bold text-2xl  py-1 text-slate-800">
+                <h3 className="raleway-bold text-2xl dark:text-violet-500 py-1 text-slate-800">
                   {selectedExperience?.position}
                 </h3>
-                <h4 className="raleway-regular text-slate-600">
+                <h4 className="raleway-regular text-slate-600 dark:text-white">
                   - {selectedExperience?.company}
                 </h4>
                 <ul className="list-disc ml-3 mt-3">
                   {selectedExperience?.workHighlights.map(
                     ({ id, description }) => (
                       <li
-                        className="text-sm raleway-regular text-slate-600 mt-3"
+                        className="text-sm raleway-regular dark:text-gray-300 text-slate-600 mt-3"
                         key={id}
                       >
                         {description}

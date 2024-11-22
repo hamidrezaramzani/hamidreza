@@ -27,16 +27,16 @@ export const Slider = <T,>({ values, render }: SliderProps<T>) => {
       <div className="absolute md:top-0 md:right-0 bottom-4 w-full right-0 z-50 md:w-6 h-16 flex justify-center items-center md:flex-col gap-2">
         <button
           onClick={handleSlidePrev}
-          className="text-xl  hover:bg-slate-50 rounded-md transition-all"
+          className="text-xl  dark:text-white dark:hover:bg-zinc-800 hover:bg-slate-50 rounded-md transition-all"
         >
           <MdOutlineKeyboardArrowUp />
         </button>
-        <span className="raleway-bold flex w-10">
+        <span className="raleway-bold flex w-10 dark:text-white">
           {currentSlide + 1} / {values.length}
         </span>
         <button
           onClick={handleSlideNext}
-          className="text-xl hover:bg-slate-50 rounded-md transition-all"
+          className="text-xl dark:text-white dark:hover:bg-zinc-800 hover:bg-slate-50 rounded-md transition-all"
         >
           <MdOutlineKeyboardArrowDown />
         </button>
