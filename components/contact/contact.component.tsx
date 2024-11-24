@@ -8,7 +8,13 @@ export const Contact = () => {
   return (
     <MainLayout title={wordbook.contact.title}>
       <div className="flex gap-10 -ml-8 md:ml-0 justify-start  items-end w-full">
-        <Image src="/alien.png" width={250} alt="Alien" height={250} />
+        <Image
+          src="/alien.png"
+          className="hidden md:flex"
+          width={250}
+          alt="Alien"
+          height={250}
+        />
         <div className="flex flex-col">
           {contacts.map(({ icon: Icon, link, label, id, title }) => (
             <div
@@ -20,7 +26,12 @@ export const Contact = () => {
               </div>
               <div>
                 <span className="text-bold">{title}</span> <br />
-                <a href={link} className="text-sm dark:text-gray-300 text-gray-500">{label}</a>
+                <a
+                  href={link}
+                  className="text-sm dark:text-gray-300 text-gray-500"
+                >
+                  {label}
+                </a>
               </div>
             </div>
           ))}
