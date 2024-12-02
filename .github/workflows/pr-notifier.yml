@@ -47,7 +47,7 @@ jobs:
               📂 Repository: ${repository.name}
               🔗 Pull Request Link: ${pull_request.html_url}
 
-              cc: @hamidrezaramzani
+              cc: <@995181976388640789>
               `.trim();
             }
 
@@ -62,7 +62,7 @@ jobs:
               📂 Repository: ${repository.name}
               🔗 Pull Request Link: ${pull_request.html_url}
 
-              cc: @hamidrezaramzani
+              cc: <@995181976388640789>
               `.trim();
             }
 
@@ -78,7 +78,7 @@ jobs:
               📂 Repository: ${repository.name}
               🔗 Pull Request Link: ${pull_request.html_url}
 
-              cc: @hamidrezaramzani
+              cc: <@995181976388640789>
               `.trim();
             }
 
