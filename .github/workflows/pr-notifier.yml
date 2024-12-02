@@ -9,45 +9,86 @@ on:
 jobs:
   notify-discord:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Send Notification to Discord
+      - name: Notify Discord
+        uses: actions/github-script@v6
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        run: |
-          ACTION=$(echo ${{ github.event.action }})
-          REVIEW_STATE=$(echo ${{ github.event.review.state || '' }})
-          PR_URL=${{ github.event.pull_request.html_url }}
-          PR_TITLE=${{ github.event.pull_request.title }}
-          ASSIGNEE=$(echo ${{ github.event.pull_request.assignee.login || '' }})
-          SENDER=${{ github.event.sender.login }}
-          HEAD_BRANCH=${{ github.event.pull_request.head.ref }}
-          BASE_BRANCH=${{ github.event.pull_request.base.ref }}
-          REPOSITORY=${{ github.repository }}
+        with:
+          script: |
+            const { action, review, pull_request, repository } = context.payload;
 
-          if [[ "$ACTION" == "submitted" ]]; then
-            if [[ "$REVIEW_STATE" == "approved" ]]; then
-              ACTIVITY=":white_check_mark: **Activity**: Approved"
-            elif [[ "$REVIEW_STATE" == "changes_requested" ]]; then
-              ACTIVITY=":x: **Activity**: Changes Requested"
-            else
-              exit 0 # Skip other review states
-            fi
-            USER=${{ github.event.review.user.login }}
-          elif [[ "$ACTION" == "assigned" ]]; then
-            ACTIVITY=":clipboard: **Activity**: Assigned"
-            USER="$ASSIGNEE"
-          else
-            exit 0 # Skip other actions
-          fi
 
-          MESSAGE="$PR_TITLE
-          > :bust_in_silhouette: **User**: $USER
-          :herb: **Branch**: $HEAD_BRANCH
-          :deciduous_tree: **Base Branch**: $BASE_BRANCH
-          :open_file_folder: **Repository**: $REPOSITORY
-          :link: **Pull Request Link**: $PR_URL
-          $ACTIVITY"
+            console.log(JSON.stringify(context));
+            const repo = pull_request.head.html_url;
+            const owner = context.repo.owner;
 
-          curl -X POST -H "Content-Type: application/json" \
-            -d "{\"content\": \"$MESSAGE\"}" $DISCORD_WEBHOOK_URL
+            const discordUserIds = {
+             hamidrezaramzani: "995181976388640789",
+            };
+
+            async function sendToDiscord(message) {
+              const response = await fetch(process.env.DISCORD_WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ content: message }),
+              });
+
+              if (!response.ok) {
+                throw new Error(`Failed to send message: ${response.statusText}`);
+              }
+            }
+
+            let message;
+
+            if (action === "submitted" && review.state === "approved") {
+              message = `
+              🚀 Pull Request Approved!
+              
+              👤 Reviewer: ${review.user.login}
+              👩‍💻 PR Creator: ${pull_request.user.login}
+              🌿 Branch: ${pull_request.head.ref}
+              🌳 Base Branch: ${pull_request.base.ref}
+              📂 Repository: ${repository.name}
+              🔗 Pull Request Link: ${pull_request.html_url}
+
+              cc: <@${discordUserIds[pull_request.user.login]}>
+              `.trim();
+            }
+
+            if (action === "submitted" && review.state === "changes_requested") {
+              message = `
+              :recycle: Pull Request Has Request Change
+              
+              👤 Reviewer: ${review.user.login}
+              👩‍💻 PR Creator: ${pull_request.user.login}
+              🌿 Branch: ${pull_request.head.ref}
+              🌳 Base Branch: ${pull_request.base.ref}
+              📂 Repository: ${repository.name}
+              🔗 Pull Request Link: ${pull_request.html_url}
+
+              cc: <@${discordUserIds[pull_request.user.login]}>
+              `.trim();
+            }
+
+            if (action === "assigned") {
+              const assignee = pull_request.assignee ? pull_request.assignee.login : "Unknown";
+              message = `
+              👏 Pr reviewer assigned
+              
+              👤 Assignee: ${assignee}
+              👩‍💻 PR Creator: ${pull_request.user.login}
+              🌿 Branch: ${pull_request.head.ref}
+              🌳 Base Branch: ${pull_request.base.ref}
+              📂 Repository: ${repository.name}
+              🔗 Pull Request Link: ${pull_request.html_url}
+
+              cc: <@${discordUserIds[pull_request.user.login]}>
+              `.trim();
+            }
+
+            if (message) {
+              await sendToDiscord(message);
+            } else {
+              console.log("No matching condition for sending Discord message.");
+            }
