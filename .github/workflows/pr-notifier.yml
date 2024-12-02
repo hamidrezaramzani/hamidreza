@@ -22,6 +22,10 @@ jobs:
             const repo = pull_request.head.html_url;
             const owner = context.repo.owner;
 
+            const discordUserIds = {
+             hamidrezaramzani: "995181976388640789",
+            };
+
             async function sendToDiscord(message) {
               const response = await fetch(process.env.DISCORD_WEBHOOK_URL, {
                 method: "POST",
@@ -47,7 +51,7 @@ jobs:
               📂 Repository: ${repository.name}
               🔗 Pull Request Link: ${pull_request.html_url}
 
-              cc: <@995181976388640789>
+              cc: <@${discordUserIds[pull_request.user.login]}>
               `.trim();
             }
 
@@ -62,7 +66,7 @@ jobs:
               📂 Repository: ${repository.name}
               🔗 Pull Request Link: ${pull_request.html_url}
 
-              cc: <@995181976388640789>
+              cc: <@${discordUserIds[pull_request.user.login]}>
               `.trim();
             }
 
@@ -78,11 +82,10 @@ jobs:
               📂 Repository: ${repository.name}
               🔗 Pull Request Link: ${pull_request.html_url}
 
-              cc: <@995181976388640789>
+              cc: <@${discordUserIds[pull_request.user.login]}>
               `.trim();
             }
 
-            // Send the message if it's defined
             if (message) {
               await sendToDiscord(message);
             } else {
