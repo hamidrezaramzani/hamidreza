@@ -2,7 +2,7 @@ name: Notify Discord on PR Activities
 
 on:
   pull_request_review:
-    types: [submitted] 
+    types: [submitted]
   pull_request:
     types: [assigned]
 
@@ -11,43 +11,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Send Notification to Discord
-      env:
-        DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-      run: |
-        ACTION=$(echo ${{ github.event.action }})
-        REVIEW_STATE=$(echo ${{ github.event.review.state || '' }})
-        PR_URL=${{ github.event.pull_request.html_url }}
-        PR_TITLE=${{ github.event.pull_request.title }}
-        ASSIGNEE=$(echo ${{ github.event.pull_request.assignee.login || '' }})
-        SENDER=${{ github.event.sender.login }}
-        HEAD_BRANCH=${{ github.event.pull_request.head.ref }}
-        BASE_BRANCH=${{ github.event.pull_request.base.ref }}
-        REPOSITORY=${{ github.repository }}
+      - name: Send Notification to Discord
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          ACTION=$(echo ${{ github.event.action }})
+          REVIEW_STATE=$(echo ${{ github.event.review.state || '' }})
+          PR_URL=${{ github.event.pull_request.html_url }}
+          PR_TITLE=${{ github.event.pull_request.title }}
+          ASSIGNEE=$(echo ${{ github.event.pull_request.assignee.login || '' }})
+          SENDER=${{ github.event.sender.login }}
+          HEAD_BRANCH=${{ github.event.pull_request.head.ref }}
+          BASE_BRANCH=${{ github.event.pull_request.base.ref }}
+          REPOSITORY=${{ github.repository }}
 
-        if [[ "$ACTION" == "submitted" ]]; then
-          if [[ "$REVIEW_STATE" == "approved" ]]; then
-            ACTIVITY=":white_check_mark: **Activity**: Approved"
-          elif [[ "$REVIEW_STATE" == "changes_requested" ]]; then
-            ACTIVITY=":x: **Activity**: Changes Requested"
+          if [[ "$ACTION" == "submitted" ]]; then
+            if [[ "$REVIEW_STATE" == "approved" ]]; then
+              ACTIVITY=":white_check_mark: **Activity**: Approved"
+            elif [[ "$REVIEW_STATE" == "changes_requested" ]]; then
+              ACTIVITY=":x: **Activity**: Changes Requested"
+            else
+              exit 0 # Skip other review states
+            fi
+            USER=${{ github.event.review.user.login }}
+          elif [[ "$ACTION" == "assigned" ]]; then
+            ACTIVITY=":clipboard: **Activity**: Assigned"
+            USER="$ASSIGNEE"
           else
-            exit 0 # Skip other review states
+            exit 0 # Skip other actions
           fi
-          USER=${{ github.event.review.user.login }}
-        elif [[ "$ACTION" == "assigned" ]]; then
-          ACTIVITY=":clipboard: **Activity**: Assigned"
-          USER="$ASSIGNEE"
-        else
-          exit 0 # Skip other actions
-        fi
 
-        MESSAGE="$PR_TITLE
-> :bust_in_silhouette: **User**: $USER
-:herb: **Branch**: $HEAD_BRANCH
-:deciduous_tree: **Base Branch**: $BASE_BRANCH
-:open_file_folder: **Repository**: $REPOSITORY
-:link: **Pull Request Link**: $PR_URL
-$ACTIVITY"
+          MESSAGE="$PR_TITLE
+          > :bust_in_silhouette: **User**: $USER
+          :herb: **Branch**: $HEAD_BRANCH
+          :deciduous_tree: **Base Branch**: $BASE_BRANCH
+          :open_file_folder: **Repository**: $REPOSITORY
+          :link: **Pull Request Link**: $PR_URL
+          $ACTIVITY"
 
-        curl -X POST -H "Content-Type: application/json" \
-          -d "{\"content\": \"$MESSAGE\"}" $DISCORD_WEBHOOK_URL
+          curl -X POST -H "Content-Type: application/json" \
+            -d "{\"content\": \"$MESSAGE\"}" $DISCORD_WEBHOOK_URL
