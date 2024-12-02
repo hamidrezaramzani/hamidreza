@@ -2,9 +2,9 @@ name: Notify Discord on PR Activities
 
 on:
   pull_request_review:
-    types: [submitted]
+    types: [submitted] # Handles "approve" and "request changes"
   pull_request:
-    types: [assigned]
+    types: [assigned] # Handles "assignee added"
 
 jobs:
   notify-discord:
@@ -16,45 +16,24 @@ jobs:
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          MESSAGE="$GITHUB_EVENT_PULL_REQUEST_TITLE
-          > :bust_in_silhouette: **User**: ${{ github.event.review.user.login }}
-          :herb: **Branch**: ${{ github.event.pull_request.head.ref }}
-          :deciduous_tree: **Base Branch**: ${{ github.event.pull_request.base.ref }}
-          :open_file_folder: **Repository**: ${{ github.repository }}
-          :link: **Pull Request Link**: ${{ github.event.pull_request.html_url }}
-          :white_check_mark: **Activity**: Approved"
-
+          MESSAGE="$(echo -e "$GITHUB_EVENT_PULL_REQUEST_TITLE\n> :bust_in_silhouette: **User**: ${{ github.event.review.user.login }}\n:herb: **Branch**: ${{ github.event.pull_request.head.ref }}\n:deciduous_tree: **Base Branch**: ${{ github.event.pull_request.base.ref }}\n:open_file_folder: **Repository**: ${{ github.repository }}\n:link: **Pull Request Link**: ${{ github.event.pull_request.html_url }}\n:white_check_mark: **Activity**: Approved")"
           curl -X POST -H "Content-Type: application/json" \
-            -d "{\"content\": \"$MESSAGE\"}" $DISCORD_WEBHOOK_URL
+            -d "{\"content\": \"${MESSAGE//\"/\\\"}\"}" $DISCORD_WEBHOOK_URL
 
       - name: Check Request Changes
         if: ${{ github.event.action == 'submitted' && github.event.review.state == 'changes_requested' }}
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          MESSAGE="$GITHUB_EVENT_PULL_REQUEST_TITLE
-          > :bust_in_silhouette: **User**: ${{ github.event.review.user.login }}
-          :herb: **Branch**: ${{ github.event.pull_request.head.ref }}
-          :deciduous_tree: **Base Branch**: ${{ github.event.pull_request.base.ref }}
-          :open_file_folder: **Repository**: ${{ github.repository }}
-          :link: **Pull Request Link**: ${{ github.event.pull_request.html_url }}
-          :x: **Activity**: Changes Requested"
-
+          MESSAGE="$(echo -e "$GITHUB_EVENT_PULL_REQUEST_TITLE\n> :bust_in_silhouette: **User**: ${{ github.event.review.user.login }}\n:herb: **Branch**: ${{ github.event.pull_request.head.ref }}\n:deciduous_tree: **Base Branch**: ${{ github.event.pull_request.base.ref }}\n:open_file_folder: **Repository**: ${{ github.repository }}\n:link: **Pull Request Link**: ${{ github.event.pull_request.html_url }}\n:x: **Activity**: Changes Requested")"
           curl -X POST -H "Content-Type: application/json" \
-            -d "{\"content\": \"$MESSAGE\"}" $DISCORD_WEBHOOK_URL
+            -d "{\"content\": \"${MESSAGE//\"/\\\"}\"}" $DISCORD_WEBHOOK_URL
 
       - name: Check Assignee
         if: ${{ github.event.action == 'assigned' }}
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          MESSAGE="$GITHUB_EVENT_PULL_REQUEST_TITLE
-          > :bust_in_silhouette: **User**: ${{ github.event.pull_request.assignee.login }}
-          :herb: **Branch**: ${{ github.event.pull_request.head.ref }}
-          :deciduous_tree: **Base Branch**: ${{ github.event.pull_request.base.ref }}
-          :open_file_folder: **Repository**: ${{ github.repository }}
-          :link: **Pull Request Link**: ${{ github.event.pull_request.html_url }}
-          :clipboard: **Activity**: Assigned"
-
+          MESSAGE="$(echo -e "$GITHUB_EVENT_PULL_REQUEST_TITLE\n> :bust_in_silhouette: **User**: ${{ github.event.pull_request.assignee.login }}\n:herb: **Branch**: ${{ github.event.pull_request.head.ref }}\n:deciduous_tree: **Base Branch**: ${{ github.event.pull_request.base.ref }}\n:open_file_folder: **Repository**: ${{ github.repository }}\n:link: **Pull Request Link**: ${{ github.event.pull_request.html_url }}\n:clipboard: **Activity**: Assigned")"
           curl -X POST -H "Content-Type: application/json" \
-            -d "{\"content\": \"$MESSAGE\"}" $DISCORD_WEBHOOK_URL
+            -d "{\"content\": \"${MESSAGE//\"/\\\"}\"}" $DISCORD_WEBHOOK_URL
