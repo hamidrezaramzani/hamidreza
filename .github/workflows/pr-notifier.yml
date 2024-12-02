@@ -16,4 +16,4 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         with:
           script: |
-            console.log(github.context)
+            console.log(JSON.stringify(github.event))
