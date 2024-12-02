@@ -19,6 +19,7 @@ jobs:
             const { action, review, pull_request, repository } = context.payload;
 
 
+            console.log(JSON.stringify(context));
             const repo = pull_request.head.html_url;
             const owner = context.repo.owner;
 
@@ -75,7 +76,7 @@ jobs:
               message = `
               👏 Pr reviewer assigned
               
-              👤 Reviewer: ${review.user.login}
+              👤 Assignee: ${assignee}
               👩‍💻 PR Creator: ${pull_request.user.login}
               🌿 Branch: ${pull_request.head.ref}
               🌳 Base Branch: ${pull_request.base.ref}
