@@ -2,9 +2,9 @@ name: Notify Discord on PR Activities
 
 on:
   pull_request_review:
-    types: [submitted]
+    types: submitted
   pull_request:
-    types: [assigned]
+    types: assigned
 
 jobs:
   notify-discord:
