@@ -3,9 +3,58 @@ name: Notify Discord on PR Activities
 on:
   pull_request_review:
     types: [submitted]
+  pull_request:
+    types: [assigned]
+
 jobs:
-  approved:
-    if: github.event.review.state == 'approved'
+  notify-discord:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "This PR was approved"
+      - name: Check Approved
+        if: ${{ github.event.action == 'submitted' && github.event.review.state == 'approved' }}
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          MESSAGE="$GITHUB_EVENT_PULL_REQUEST_TITLE
+          > :bust_in_silhouette: **User**: ${{ github.event.review.user.login }}
+          :herb: **Branch**: ${{ github.event.pull_request.head.ref }}
+          :deciduous_tree: **Base Branch**: ${{ github.event.pull_request.base.ref }}
+          :open_file_folder: **Repository**: ${{ github.repository }}
+          :link: **Pull Request Link**: ${{ github.event.pull_request.html_url }}
+          :white_check_mark: **Activity**: Approved"
+
+          curl -X POST -H "Content-Type: application/json" \
+            -d "{\"content\": \"$MESSAGE\"}" $DISCORD_WEBHOOK_URL
+
+      - name: Check Request Changes
+        if: ${{ github.event.action == 'submitted' && github.event.review.state == 'changes_requested' }}
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          MESSAGE="$GITHUB_EVENT_PULL_REQUEST_TITLE
+          > :bust_in_silhouette: **User**: ${{ github.event.review.user.login }}
+          :herb: **Branch**: ${{ github.event.pull_request.head.ref }}
+          :deciduous_tree: **Base Branch**: ${{ github.event.pull_request.base.ref }}
+          :open_file_folder: **Repository**: ${{ github.repository }}
+          :link: **Pull Request Link**: ${{ github.event.pull_request.html_url }}
+          :x: **Activity**: Changes Requested"
+
+          curl -X POST -H "Content-Type: application/json" \
+            -d "{\"content\": \"$MESSAGE\"}" $DISCORD_WEBHOOK_URL
+
+      - name: Check Assignee
+        if: ${{ github.event.action == 'assigned' }}
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          MESSAGE="$GITHUB_EVENT_PULL_REQUEST_TITLE
+          > :bust_in_silhouette: **User**: ${{ github.event.pull_request.assignee.login }}
+          :herb: **Branch**: ${{ github.event.pull_request.head.ref }}
+          :deciduous_tree: **Base Branch**: ${{ github.event.pull_request.base.ref }}
+          :open_file_folder: **Repository**: ${{ github.repository }}
+          :link: **Pull Request Link**: ${{ github.event.pull_request.html_url }}
+          :clipboard: **Activity**: Assigned"
+
+          curl -X POST -H "Content-Type: application/json" \
+            -d "{\"content\": \"$MESSAGE\"}" $DISCORD_WEBHOOK_URL
