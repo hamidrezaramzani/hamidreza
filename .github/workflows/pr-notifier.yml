@@ -16,9 +16,12 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         with:
           script: |
-            const { action, review, pull_request } = context.payload;
+            const { action, review, pull_request, repository } = context.payload;
 
-            // Helper function to send Discord message
+
+            const repo = pull_request.head.html_url;
+            const owner = context.repo.owner;
+
             async function sendToDiscord(message) {
               const response = await fetch(process.env.DISCORD_WEBHOOK_URL, {
                 method: "POST",
@@ -33,43 +36,49 @@ jobs:
 
             let message;
 
-            // Handle "Approved"
             if (action === "submitted" && review.state === "approved") {
               message = `
-              ${pull_request.title}
-              > :bust_in_silhouette: **User**: ${review.user.login}
-              :herb: **Branch**: ${pull_request.head.ref}
-              :deciduous_tree: **Base Branch**: ${pull_request.base.ref}
-              :open_file_folder: **Repository**: ${github.context.repo.owner}/${github.context.repo.repo}
-              :link: **Pull Request Link**: ${pull_request.html_url}
-              :white_check_mark: **Activity**: Approved
+              🚀 Pull Request Approved!
+              
+              👤 Reviewer: ${review.user.login}
+              👩‍💻 PR Creator: ${pull_request.user.login}
+              🌿 Branch: ${pull_request.head.ref}
+              🌳 Base Branch: ${pull_request.base.ref}
+              📂 Repository: ${repository.name}
+              🔗 Pull Request Link: ${pull_request.html_url}
+
+              cc: @hamidrezaramzani
               `.trim();
             }
 
-            // Handle "Request Changes"
             if (action === "submitted" && review.state === "changes_requested") {
               message = `
-              ${pull_request.title}
-              > :bust_in_silhouette: **User**: ${review.user.login}
-              :herb: **Branch**: ${pull_request.head.ref}
-              :deciduous_tree: **Base Branch**: ${pull_request.base.ref}
-              :open_file_folder: **Repository**: ${github.context.repo.owner}/${github.context.repo.repo}
-              :link: **Pull Request Link**: ${pull_request.html_url}
-              :x: **Activity**: Changes Requested
+              :recycle: Pull Request Has Request Change
+              
+              👤 Reviewer: ${review.user.login}
+              👩‍💻 PR Creator: ${pull_request.user.login}
+              🌿 Branch: ${pull_request.head.ref}
+              🌳 Base Branch: ${pull_request.base.ref}
+              📂 Repository: ${repository.name}
+              🔗 Pull Request Link: ${pull_request.html_url}
+
+              cc: @hamidrezaramzani
               `.trim();
             }
 
-            // Handle "Assignee"
             if (action === "assigned") {
               const assignee = pull_request.assignee ? pull_request.assignee.login : "Unknown";
               message = `
-              ${pull_request.title}
-              > :bust_in_silhouette: **User**: ${assignee}
-              :herb: **Branch**: ${pull_request.head.ref}
-              :deciduous_tree: **Base Branch**: ${pull_request.base.ref}
-              :open_file_folder: **Repository**: ${github.context.repo.owner}/${github.context.repo.repo}
-              :link: **Pull Request Link**: ${pull_request.html_url}
-              :clipboard: **Activity**: Assigned
+              👏 Pr reviewer assigned
+              
+              👤 Reviewer: ${review.user.login}
+              👩‍💻 PR Creator: ${pull_request.user.login}
+              🌿 Branch: ${pull_request.head.ref}
+              🌳 Base Branch: ${pull_request.base.ref}
+              📂 Repository: ${repository.name}
+              🔗 Pull Request Link: ${pull_request.html_url}
+
+              cc: @hamidrezaramzani
               `.trim();
             }
 
