@@ -17,7 +17,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "I am Hamidreza",
-  description: `a 22-year-old web developer with a strong passion
+  description: `a 23-year-old web developer with a strong passion
               for technology and coding`,
   icons: "",
 };
