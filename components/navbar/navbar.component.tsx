@@ -15,7 +15,7 @@ export const Navbar = () => {
     setTheme?.((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
   return (
-    <div className="bg-white flex justify-around items-center dark:bg-zinc-900 z-50 w-full absolute top-0 right-0 h-16">
+    <div className="bg-white dark:bg-dark-bg flex justify-around items-center z-50 w-full absolute top-0 right-0 h-16">
       <div className="w-1/6 flex justify-center">
         <a href="https://github.com/hamidrezaramzani">
           <FiGithub className="dark:text-white text-slate-600" />
@@ -27,7 +27,7 @@ export const Navbar = () => {
             <li key={index}>
               <Link
                 href={item.link}
-                className="text-slate-600 dark:text-white text-sm hover:text-slate-900"
+                className="text-slate-600 raleway-regular font-normal dark:text-white text-sm hover:text-slate-900"
               >
                 {item.title}
               </Link>

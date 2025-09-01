@@ -28,3 +28,9 @@
 .fp-watermark {
   display: none !important;
 }
+
+@layer base {
+  .dark body {
+    background-color: #000;
+  }
+}

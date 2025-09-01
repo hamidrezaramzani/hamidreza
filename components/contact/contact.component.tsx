@@ -3,13 +3,18 @@ import { wordbook } from "@/utils";
 import { MainLayout } from "../main-layout";
 import { contacts } from "./contact.constant";
 import Image from "next/image";
+import { useContext } from "react";
+import { ThemeContextProvider } from "@/context";
 
 export const Contact = () => {
+  const { theme } = useContext(ThemeContextProvider);
   return (
     <MainLayout title={wordbook.contact.title}>
       <div className="flex gap-10 -ml-8 md:ml-0 justify-start  items-end w-full">
         <Image
-          src="/alien.png"
+          src={
+            theme === "dark" ? "/hamidreza-dark.png" : "/hamidreza-light.png"
+          }
           className="hidden md:flex"
           width={250}
           alt="Alien"
