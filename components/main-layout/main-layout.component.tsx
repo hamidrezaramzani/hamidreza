@@ -14,7 +14,7 @@ export const MainLayout = ({ title, children, hash }: MainLayoutProps) => {
             </h1>
           )}
 
-          <div className="flex flex-col justify-center md:h-80 h-screen pl-6 w-full md:border-l py-2 dark:md:border-violet-500 md:border-slate-600 relative">
+          <div className="flex flex-col justify-center md:h-80 h-screen pl-6 w-full  py-2 dark:md:border-violet-500 md:border-slate-600 relative">
             {children}
           </div>
         </div>

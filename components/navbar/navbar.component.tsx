@@ -15,7 +15,7 @@ export const Navbar = () => {
     setTheme?.((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
   return (
-    <div className="bg-white dark:bg-dark-bg flex justify-around items-center z-50 w-full absolute top-0 right-0 h-16">
+    <div className="bg-white dark:bg-dark-bg flex justify-around items-center z-50 w-full fixed top-0 right-0 h-16">
       <div className="w-1/6 flex justify-center">
         <a href="https://github.com/hamidrezaramzani">
           <FiGithub className="dark:text-white text-slate-600" />

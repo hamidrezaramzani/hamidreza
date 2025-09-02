@@ -6,7 +6,7 @@ export const navbarItems = [
 
   {
     title: "Expreience",
-    link: "/#expreience",
+    link: "/#experiences",
   },
 
   {
