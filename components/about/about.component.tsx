@@ -9,7 +9,7 @@ export const About = () => {
   const { theme } = useContext(ThemeContextProvider);
   return (
     <div className="section w-full flex justify-center align-middle h-screen">
-      <div className="flex justify-center w-full gap-5">
+      <div className="flex justify-center items-center w-full gap-5 h-full">
         <div className="flex flex-col w-1/2 gap-5 align-middle">
           <div className="flex flex-col justify-center items-center">
             <Image
