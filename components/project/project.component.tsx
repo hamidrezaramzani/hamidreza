@@ -3,49 +3,35 @@ import { ProjectItem } from "./project.type";
 import { MainLayout } from "../main-layout";
 import { Slider } from "../slider/slider.component";
 import { wordbook } from "@/utils";
-import { useRef, useState } from "react";
-import { supabase } from "@/lib";
 import { LoadingContainer } from "../loading-container";
-import { useOnVisible } from "@/hooks";
 
 export const Project = () => {
-  const [projects, setProjects] = useState<ProjectItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const componentRef = useRef(null);
-
-  const fetchProjects = async () => {
-    const { data, error } = await supabase.from("projects").select(`
-        id, 
-        startDate, 
-        endDate, 
-        title, 
-        description,
-        technologies (
-          id, 
-          title
-        )
-      `);
-
-    if (error) {
-      console.error("Error fetching projects:", error);
-      setProjects([]);
-    } else {
-      setProjects(data as unknown as ProjectItem[]);
-    }
-    setLoading(false);
-  };
-
-  useOnVisible<ProjectItem[]>({
-    callback: fetchProjects,
-    ref: componentRef,
-    values: projects,
-  });
+  const projects = [
+    {
+      id: "1",
+      startDate: "14 April 2022",
+      endDate: "Currently",
+      title: "Iran Locations API",
+      link: "https://www.iran-locations-api.ir",
+      description:
+        "This project provides an API for retrieving information about cities and states. It allows users to query data based on region, state, or city names, returning relevant details like population, coordinates, and administrative divisions. The API is designed for seamless integration into web or mobile applications, offering fast and reliable geographical data.",
+      technologies: [
+        {
+          id: "1",
+          title: "nextjs",
+        },
+        {
+          id: "2",
+          title: "nodejs",
+        },
+      ],
+    },
+  ];
 
   return (
     <MainLayout hash="projects" title={wordbook.project.title}>
-      <div ref={componentRef}>
-        <LoadingContainer loading={loading}>
+      <div>
+        <LoadingContainer>
           <Slider<ProjectItem>
             values={projects}
             render={(selectedProject) => (

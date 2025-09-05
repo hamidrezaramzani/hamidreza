@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
 export type LoadingContainerProps = {
-  loading: boolean;
+  loading?: boolean;
   children: ReactNode;
 };

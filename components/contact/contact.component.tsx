@@ -27,7 +27,7 @@ export const Contact = () => {
               className="inline dark:text-white text-slate-600 md:flex md:items-center md:gap-3 mt-8 w-full"
             >
               <div>
-                <Icon className="text-violet-500" fontSize={33} />
+                <Icon className="text-slate-800" fontSize={33} />
               </div>
               <div>
                 <span className="text-bold">{title}</span> <br />

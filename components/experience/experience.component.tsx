@@ -3,49 +3,40 @@ import { WorkExperience } from "./experience.type";
 import { MainLayout } from "../main-layout";
 import { Slider } from "../slider/slider.component";
 import { wordbook } from "@/utils";
-import { useRef, useState } from "react";
-import { supabase } from "@/lib";
 import { LoadingContainer } from "@/components";
-import { useOnVisible } from "@/hooks";
 
 export const Experience = () => {
-  const [experiences, setExperiences] = useState<WorkExperience[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const componentRef = useRef(null);
-
-  const fetchExperiencesWithHighlights = async () => {
-    const { data, error } = await supabase.from("experiences").select(`
-        id, 
-        startDate, 
-        endDate, 
-        position, 
-        company,
-        workHighlights (
-          id, 
-          description
-        )
-      `);
-
-    if (error) {
-      console.error("Error fetching experiences with highlights:", error);
-      setExperiences([]);
-    } else {
-      setExperiences(data);
-    }
-    setLoading(false);
-  };
-
-  useOnVisible<WorkExperience[]>({
-    callback: fetchExperiencesWithHighlights,
-    ref: componentRef,
-    values: experiences,
-  });
+  const experiences = [
+    {
+      id: "1",
+      startDate: "22 July 2022",
+      endDate: "Currently",
+      position: "Frontend Developer",
+      company: "Poroshat Filter",
+      workHighlights: [
+        {
+          id: "1",
+          description:
+            "Built dynamic user interfaces using React.js to improve user experience in the company's web applications.",
+        },
+        {
+          id: "2",
+          description:
+            "Implemented responsive designs with JavaScript, ensuring seamless application functionality across all devices.",
+        },
+        {
+          id: "3",
+          description:
+            "Collaborated regularly with backend developers to integrate APIs and ensure smooth data flow between frontend and backend.",
+        },
+      ],
+    },
+  ];
 
   return (
     <MainLayout hash="experiences" title={wordbook.experience.title}>
-      <div ref={componentRef}>
-        <LoadingContainer loading={loading}>
+      <div>
+        <LoadingContainer>
           <Slider<WorkExperience>
             values={experiences}
             render={(selectedExperience) => (
