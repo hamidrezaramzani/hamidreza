@@ -16,14 +16,38 @@ export const Project = () => {
       description:
         "This project provides an API for retrieving information about cities and states. It allows users to query data based on region, state, or city names, returning relevant details like population, coordinates, and administrative divisions. The API is designed for seamless integration into web or mobile applications, offering fast and reliable geographical data.",
       technologies: [
-        {
-          id: "1",
-          title: "nextjs",
-        },
-        {
-          id: "2",
-          title: "nodejs",
-        },
+        { id: "1", title: "nextjs" },
+        { id: "2", title: "nodejs" },
+      ],
+    },
+
+    {
+      id: "2",
+      startDate: "Apr 28 - 2026",
+      endDate: "Jun 7, 2026",
+      title: "Keyboom",
+      link: "https://github.com/hamidrezaramzani/keyboom",
+      description:
+        "An open-source project focused on keyboard utilities and productivity tools. The project explores modern frontend architecture and reusable component design using JavaScript/TypeScript.",
+      technologies: [
+        { id: "1", title: "javascript" },
+        { id: "2", title: "typescript" },
+        { id: "3", title: "github" },
+      ],
+    },
+
+    {
+      id: "3",
+      startDate: "Oct 15, 2025",
+      endDate: "Feb 11, 2026",
+      title: "IntelliMeeting",
+      link: "https://github.com/hamidrezaramzani/intelli-meeting",
+      description:
+        "AI-powered meeting scheduling system that analyzes calendar events and suggests optimal meeting times based on availability and priority scoring algorithms.",
+      technologies: [
+        { id: "1", title: "nodejs" },
+        { id: "2", title: "ai" },
+        { id: "3", title: "calendar-api" },
       ],
     },
   ];
