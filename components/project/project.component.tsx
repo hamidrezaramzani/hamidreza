@@ -28,7 +28,7 @@ export const Project = () => {
       title: "Keyboom",
       link: "https://github.com/hamidrezaramzani/keyboom",
       description:
-        "An open-source project focused on keyboard utilities and productivity tools. The project explores modern frontend architecture and reusable component design using JavaScript/TypeScript.",
+        "A web application designed for managing, tracking, and analyzing organizational software subscriptions. Keyboom helps teams maintain visibility over subscription costs, renewal dates, license usage, and vendor information through a centralized management platform.",
       technologies: [
         { id: "1", title: "javascript" },
         { id: "2", title: "typescript" },
@@ -43,7 +43,7 @@ export const Project = () => {
       title: "IntelliMeeting",
       link: "https://github.com/hamidrezaramzani/intelli-meeting",
       description:
-        "AI-powered meeting scheduling system that analyzes calendar events and suggests optimal meeting times based on availability and priority scoring algorithms.",
+        "An AI-powered meeting assistant that records meetings, converts speech to text, and provides tools for transcript editing, analysis, and information extraction. The platform helps teams organize meeting notes, identify key discussion points, and improve collaboration through intelligent transcript management.",
       technologies: [
         { id: "1", title: "nodejs" },
         { id: "2", title: "ai" },
