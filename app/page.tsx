@@ -1,12 +1,5 @@
-"use client";
-import { About, Experience, Project, Contact } from "@/components";
+import { PortfolioShell } from "@/components/portfolio/portfolio-shell";
+
 export default function Home() {
-  return (
-    <>
-      <About />
-      <Experience />
-      <Project />
-      <Contact />
-    </>
-  );
+  return <PortfolioShell />;
 }
