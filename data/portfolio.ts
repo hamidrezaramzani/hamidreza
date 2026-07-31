@@ -3,7 +3,7 @@ export const siteConfig = {
   shortName: "Hamidreza",
   title: "Hamidreza Ramzani — Frontend Developer",
   description:
-    "I'm Hamidreza, a 23-year-old web developer with a strong passion for technology and coding.",
+    "I'm Hamidreza, a 24-year-old web developer with a strong passion for technology and coding.",
   url: "https://www.thehamidreza.ir",
   locale: "en_US",
   github: "https://github.com/hamidrezaramzani",
@@ -15,9 +15,9 @@ export const siteConfig = {
 export const about = {
   fullName: "Hamidreza Ramzani",
   headline: "Frontend Developer",
-  description: "I'm Hamidreza, a 23-year-old web developer",
+  description: "I'm Hamidreza, a 24-year-old web developer",
   extendedDescription:
-    "I'm Hamidreza, a 23-year-old web developer with a strong passion for technology and coding.",
+    "I'm Hamidreza, a 24-year-old web developer with a strong passion for technology and coding.",
   highlights: [
     {
       label: "Experience",
