@@ -8,7 +8,7 @@ export const siteConfig = {
   locale: "en_US",
   github: "https://github.com/hamidrezaramzani",
   role: "Frontend Developer",
-  focus: "Building polished web interfaces with React and Next.js",
+  focus: "Building polished web interfaces with React and Next.js.",
   yearsStarted: 2022,
 };
 
